@@ -50,7 +50,7 @@
 <% opts.sort_by{|key,value| key}.each do |opt| -%>
   <%= opt %>
 <% end -%>
-<% if scope.lookupvar('postrotate') == nil -%>
+<% if scope.lookupvar('postrotate') != nil -%>
   postrotate
   <%- @postrotate = [@postrotate] unless @postrotate.is_a?(Array) -%>
   <%- @postrotate.each do |val| -%>
@@ -58,7 +58,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if scope.lookupvar('prerotate') == nil -%>
+<% if scope.lookupvar('prerotate') != nil -%>
   prerotate
   <%- @prerotate = [@prerotate] unless @prerotate.is_a?(Array) -%>
   <%- @prerotate.each do |val| -%>
@@ -66,7 +66,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if scope.lookupvar('firstaction') == nil -%>
+<% if scope.lookupvar('firstaction') != nil -%>
   firstaction
   <%- @firstaction = [@firstaction] unless @firstaction.is_a?(Array) -%>
   <%- @firstaction.each do |val| -%>
@@ -74,7 +74,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if scope.lookupvar('lastaction') == nil -%>
+<% if scope.lookupvar('lastaction') != nil -%>
   lastaction
   <%- @lastaction = [@lastaction] unless @lastaction.is_a?(Array) -%>
   <%- @lastaction.each do |val| -%>
