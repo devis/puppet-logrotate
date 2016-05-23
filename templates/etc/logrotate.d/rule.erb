@@ -42,14 +42,15 @@
     'uncompresscmd'
   ].each do |key|
     value = scope.to_hash[key]
-    opts << "#{key} #{value}" if value != 'undef'
+    check = scope.lookupvar(key)
+    opts << "#{key} #{value}" if check != :undef
   end
 -%>
 <%= rpath %> {
 <% opts.sort_by{|key,value| key}.each do |opt| -%>
   <%= opt %>
 <% end -%>
-<% if @postrotate != 'undef' -%>
+<% if scope.lookupvar('postrotate') == :undef -%>
   postrotate
   <%- @postrotate = [@postrotate] unless @postrotate.is_a?(Array) -%>
   <%- @postrotate.each do |val| -%>
@@ -57,7 +58,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if @prerotate != 'undef' -%>
+<% if scope.lookupvar('prerotate') == :undef -%>
   prerotate
   <%- @prerotate = [@prerotate] unless @prerotate.is_a?(Array) -%>
   <%- @prerotate.each do |val| -%>
@@ -65,7 +66,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if @firstaction != 'undef' -%>
+<% if scope.lookupvar('firstaction') == :undef -%>
   firstaction
   <%- @firstaction = [@firstaction] unless @firstaction.is_a?(Array) -%>
   <%- @firstaction.each do |val| -%>
@@ -73,7 +74,7 @@
   <%- end -%>
   endscript
 <% end -%>
-<% if @lastaction != 'undef' -%>
+<% if scope.lookupvar('lastaction') == :undef -%>
   lastaction
   <%- @lastaction = [@lastaction] unless @lastaction.is_a?(Array) -%>
   <%- @lastaction.each do |val| -%>
